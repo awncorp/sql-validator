@@ -12,6 +12,7 @@ on 'test' => sub {
   requires "Data::Object::Class" => "2.02";
   requires "Data::Object::ClassHas" => "2.01";
   requires "Data::Object::Exception" => "2.02";
+  requires "IO::Socket::SSL" => "2.009";
   requires "JSON::Validator" => "4.01";
   requires "Test::Auto" => "0.12";
   requires "perl" => "5.014";
