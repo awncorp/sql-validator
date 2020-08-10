@@ -27,7 +27,8 @@ has schema => (
 fun new_schema($self) {
   my $version = $self->version;
   my $specification = "schemas/$version/rulesets.yaml";
-  "https://raw.githubusercontent.com/$GITHUB_SOURCE/master/$specification"
+  $ENV{SQL_VALIDATOR_SCHEMA}
+    || "https://raw.githubusercontent.com/$GITHUB_SOURCE/master/$specification"
 }
 
 has validator => (
@@ -37,6 +38,8 @@ has validator => (
 );
 
 fun new_validator($self) {
+  local $ENV{JSON_VALIDATOR_CACHE_ANYWAYS} = 1
+    unless exists $ENV{JSON_VALIDATOR_CACHE_ANYWAYS};
   JSON::Validator->new
 }
 
